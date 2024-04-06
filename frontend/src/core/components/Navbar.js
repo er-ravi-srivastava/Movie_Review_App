@@ -49,6 +49,10 @@ export default function Navbar() {
                         key={item.name}
                         onClick={() => {
                           navigate(item.href);
+                          item.current = true;
+                          navigation.forEach((e) => {
+                            if (e !== item && e.current) e.current = false;
+                          });
                         }}
                         className={classNames(
                           item.current
