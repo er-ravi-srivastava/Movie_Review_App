@@ -1,12 +1,13 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Dashboard", href: "/", current: true },
   { name: "Movies", href: "/movies", current: false },
   { name: "Login", href: "/login", current: false },
-  { name: "Signup", href: "/signup", current: false }
+  { name: "Signup", href: "/signup", current: false },
 ];
 
 function classNames(...classes) {
@@ -14,6 +15,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const navigate = useNavigate();
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -43,9 +45,11 @@ export default function Navbar() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <button
                         key={item.name}
-                        href={item.href}
+                        onClick={() => {
+                          navigate(item.href);
+                        }}
                         className={classNames(
                           item.current
                             ? "bg-gray-900 text-white"
@@ -55,7 +59,7 @@ export default function Navbar() {
                         aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
-                      </a>
+                      </button>
                     ))}
                   </div>
                 </div>
