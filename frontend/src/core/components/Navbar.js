@@ -4,7 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "/", current: true },
+  { name: "Home", href: "/", current: true },
   { name: "Movies", href: "/movies", current: false },
   { name: "Login", href: "/login", current: false },
   { name: "Signup", href: "/signup", current: false },
@@ -15,6 +15,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  
   const navigate = useNavigate();
   return (
     <Disclosure as="nav" className="bg-gray-800 fixed top-0 w-full">

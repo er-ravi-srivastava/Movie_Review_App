@@ -8,7 +8,7 @@ const Signup = () => {
 
   return (
     <div className="w-full h-full flex flex-col gap-10 justify-center items-center">
-      <h1 className="text-5xl text-black font-bold">Signup.</h1>
+      <h1 className="text-3xl text-black font-back">Signup.</h1>
       <form
         className="w-[25%] flex flex-col items-center gap-4"
         onSubmit={(e) => e.preventDefault()}
