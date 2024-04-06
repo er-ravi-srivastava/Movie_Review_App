@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const GlobalOutlet = () => {
   return (
-    <div>
+    <div className="h-full w-full">
       <Navbar />
       <Outlet />
     </div>
