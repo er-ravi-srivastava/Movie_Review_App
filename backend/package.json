@@ -1,8 +1,16 @@
 {
+  "name": "movie_review_backend",
+  "version": "1.0.0",
+  "description": "a movie review app backend",
+  "main": "schema.js",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "scripts": {
-    "start": "nodemon server.js"
+    "dev": "nodemon src/server.js"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.3.0"
   },

@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navigation = [
-  { name: "Home", href: "/", current: true },
-  { name: "Movies", href: "/movies", current: false },
-  { name: "Login", href: "/login", current: false },
-  { name: "Signup", href: "/signup", current: false },
+  { name: "Home", href: "/"},
+  { name: "Movies", href: "/movies" },
+  { name: "Login", href: "/login" },
+  { name: "Signup", href: "/signup" },
 ];
 
 function classNames(...classes) {
@@ -15,8 +15,8 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
-  
   const navigate = useNavigate();
+  const location = useLocation();
   return (
     <Disclosure as="nav" className="bg-gray-800 fixed top-0 w-full">
       {({ open }) => (
@@ -50,13 +50,9 @@ export default function Navbar() {
                         key={item.name}
                         onClick={() => {
                           navigate(item.href);
-                          item.current = true;
-                          navigation.forEach((e) => {
-                            if (e !== item && e.current) e.current = false;
-                          });
                         }}
                         className={classNames(
-                          item.current
+                          location.pathname == item.href
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
