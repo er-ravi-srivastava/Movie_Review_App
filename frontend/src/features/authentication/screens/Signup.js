@@ -49,7 +49,7 @@ const Signup = () => {
           }}
         />
         <PrimaryButton
-          buttonText="Signup"
+          buttonText="Register"
           onClick={() => {
             console.log(signUpFormData);
           }}
