@@ -1,12 +1,15 @@
 import mongoose from "mongoose";
 
-const connectDB = async () => {
+const connectDB = async (MONGODB_URL) => {
   try {
-    await mongoose.connect(MONGODB_URL);
-    console.log("ravi da connected  to the database");
+    await mongoose.connect(MONGODB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to the database");
   } catch (error) {
-    console.log(error, "ravi da unable to connect to db");
-    throw new Error('Could not connect to MongoDB');
+    console.error("Unable to connect to the database:", error);
+    throw new Error("Could not connect to MongoDB");
   }
 };
 
