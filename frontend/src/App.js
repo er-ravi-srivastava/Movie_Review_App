@@ -1,5 +1,4 @@
 import "./App.css";
-require("dotenv").config();
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./features/authentication/screens/Login";
 import Signup from "./features/authentication/screens/Signup";

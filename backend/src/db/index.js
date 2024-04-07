@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    await mongoose.connect();
+    await mongoose.connect(MONGODB_URL);
     console.log("ravi da connected  to the database");
   } catch (error) {
     console.log(error, "ravi da unable to connect to db");
@@ -10,4 +10,4 @@ const connectDB = async () => {
   }
 };
 
-export default connectDB
+export default connectDB;
