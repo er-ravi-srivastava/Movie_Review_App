@@ -18,7 +18,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <Disclosure as="nav" className="bg-gray-800 fixed top-0 w-full">
+    <Disclosure as="nav" className="bg-blue-800 fixed top-0 w-full">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ export default function Navbar() {
                           navigate(item.href);
                         }}
                         className={classNames(
-                          location.pathname == item.href
+                          location.pathname === item.href
                             ? "bg-gray-900 text-white"
                             : "text-gray-300 hover:bg-gray-700 hover:text-white",
                           "rounded-md px-3 py-2 text-sm font-medium"
