@@ -22,7 +22,7 @@ export default function Navbar() {
               <div className="flex items-center justify-center sm:justify-start">
                 <img
                   className="h-8 w-auto mr-4"
-                  src="https://cdn-icons-png.flaticon.com/128/777/777242.png"
+                  src="https://cdn-icons-png.flaticon.com/128/4221/4221484.png"
                   alt="Your Company"
                 />
                 <div className="hidden md:block">
