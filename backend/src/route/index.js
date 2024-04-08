@@ -5,9 +5,7 @@ const router = express.Router();
 
 router.get("/movies", async (req, res) => {
   const movies = await db.Movie.find({});
-  console.log(movies)
   const movieMapp = movies.map((movie) => {
-    console.log("first");
     return {
       _id: movie._id.toString(),
       title: movie.title,
@@ -15,8 +13,7 @@ router.get("/movies", async (req, res) => {
       summary: movie.summary,
     };
   });
-  console.log(movieMapp);
-  res.json({ data: { movie: [] } });
+  res.json({ data: { movie: movieMapp } });
 });
 
 export default router;

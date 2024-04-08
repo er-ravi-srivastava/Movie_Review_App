@@ -19,7 +19,7 @@ const movieSchema = new mongoose.Schema({
   },
 });
 
-const Movie = mongoose.model("Movie", movieSchema);
+const Movie = mongoose.model("movie", movieSchema);
 
 // const saveMovie = async (movieData) => {
 //   try {
