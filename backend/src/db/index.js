@@ -1,11 +1,14 @@
 import mongoose from "mongoose";
 
-const connectDB = async (MONGODB_URL) => {
+const connectDB = async () => {
   try {
-    await mongoose.connect(MONGODB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(
+      "mongodb+srv://raviprakashshrivastav7:Ravi%402000@cluster0.b8god0x.mongodb.net/",
+      {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }
+    );
     console.log("Connected to the database");
   } catch (error) {
     console.error("Unable to connect to the database:", error);
