@@ -22,7 +22,7 @@ export default function Navbar() {
               <div className="flex items-center justify-center sm:justify-start">
                 <img
                   className="h-8 w-auto mr-4"
-                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                  src="https://cdn-icons-png.flaticon.com/128/777/777242.png"
                   alt="Your Company"
                 />
                 <div className="hidden md:block">
