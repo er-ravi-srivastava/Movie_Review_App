@@ -8,8 +8,9 @@ const Movie = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("http://localhost:3008/movies");
-        setMovies(response.data.data)
+        // const response = await axios.get("http://localhost:3008/movies");
+        // console.log(response.data)
+        // setMovies(response.data.data)
       } catch (error) {
         console.error("Error fetching movies:", error);
       }
