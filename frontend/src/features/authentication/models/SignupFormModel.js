@@ -1,5 +1,5 @@
 export const signupFormModel = {
-  firstName: "",
+  username: "",
   email: "",
   password: "",
   confirmPassword: "",

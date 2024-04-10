@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import CustomTextfield from "../../../core/components/CustomTextfield";
 import PrimaryButton from "../../../core/components/PrimaryButton";
 import { signupFormModel } from "../models/SignupFormModel";
+import axios from "axios";
 
 const Signup = () => {
   const [signUpFormData, setSignUpFormData] = useState(signupFormModel);
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className="w-full h-full flex flex-col gap-10 justify-center items-center">
@@ -14,20 +17,20 @@ const Signup = () => {
         onSubmit={(e) => e.preventDefault()}
       >
         <CustomTextfield
-          placeholder="Full name"
+          placeholder="Username"
           onChange={(e) => {
             setSignUpFormData((prev) => ({
               ...prev,
-              firstName: e.target.value,
+              username: e.target.value,
             }));
           }}
         />
-        <CustomTextfield
+        {/* <CustomTextfield
           placeholder="Email"
           onChange={(e) => {
             setSignUpFormData((prev) => ({ ...prev, email: e.target.value }));
           }}
-        />
+        /> */}
         <CustomTextfield
           placeholder="Password"
           type="password"
@@ -51,12 +54,40 @@ const Signup = () => {
         <PrimaryButton
           buttonText="Register"
           onClick={() => {
-            console.log(signUpFormData);
+            if (!loading) {
+              handleSignup();
+            }
           }}
         />
       </form>
     </div>
   );
+
+  async function handleSignup() {
+    setLoading(true); // for data loading
+    if (!signUpFormData.username || signUpFormData.username.trim() === "") {
+      console.log("test");
+    } else if (
+      !signUpFormData.password ||
+      signUpFormData.password.trim() === ""
+    ) {
+      console.log("password");
+    } else if (
+      !signUpFormData.confirmPassword ||
+      signUpFormData.confirmPassword.trim() === ""
+    ) {
+      console.log("confirmPassword");
+    } else if (signUpFormData.password !== signUpFormData.confirmPassword) {
+      console.log("password !== confirmPassword");
+    } else {
+      const response = await axios.post("http://localhost:3008/register", {
+        username: signUpFormData.username,
+        password: signUpFormData.password,
+      });
+      console.log(response.data);
+    }
+    setLoading(false);
+  }
 };
 
 export default Signup;
