@@ -1,7 +1,26 @@
 const mongoose = require('mongoose');
 
+
+const userSchema = new mongoose.Schema({
+  user: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+});
+
+const User = mongoose.model('users', userSchema);
+
+
+
+
 const movieSchema = new mongoose.Schema({
-  title: {
+
+
+    title: {
     type: String,
     required: true
   },
@@ -19,8 +38,8 @@ const movieSchema = new mongoose.Schema({
   }
 });
 
-const Movie = mongoose.model('Movie', movieSchema);
+const Movie = mongoose.model('movie', movieSchema);
 
-module.exports = Movie;
 
+module.exports = {Movie ,User};
 
