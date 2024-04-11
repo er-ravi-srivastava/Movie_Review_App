@@ -52,7 +52,7 @@ const Signup = () => {
           }}
         />
         <PrimaryButton
-          buttonText="Register"
+          buttonText={loading?"please wait" : "Register"}
           onClick={() => {
             if (!loading) {
               handleSignup();
@@ -80,11 +80,15 @@ const Signup = () => {
     } else if (signUpFormData.password !== signUpFormData.confirmPassword) {
       console.log("password !== confirmPassword");
     } else {
-      const response = await axios.post("http://localhost:3008/register", {
-        username: signUpFormData.username,
-        password: signUpFormData.password,
-      });
-      console.log(response.data);
+      try {
+        const response = await axios.post("http://localhost:3008/register", {
+          username: signUpFormData.username,
+          password: signUpFormData.password,
+        });
+        console.log(response.data);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
     }
     setLoading(false);
   }
