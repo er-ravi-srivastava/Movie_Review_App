@@ -56,6 +56,7 @@ const Signup = () => {
           onClick={() => {
             if (!loading) {
               handleSignup();
+              setLoading(false);
             }
           }}
         />
@@ -90,7 +91,7 @@ const Signup = () => {
         console.log(error.response.data.message);
       }
     }
-    setLoading(false);
+    
   }
 };
 

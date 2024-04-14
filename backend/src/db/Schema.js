@@ -12,25 +12,30 @@ const userSchema = new mongoose.Schema({
 });
 
 const movieSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  poster: {
-    type: String,
-    required: true,
-  },
-  rating: {
-    type: Number,
-    required: true,
-  },
-  summary: {
-    type: String,
-    required: true,
-  },
+  Title: { type: String, required: true },
+  Year: { type: String },
+  Rated: { type: String },
+  Released: { type: String },
+  Runtime: { type: String },
+  Genre: { type: String },
+  Director: { type: String },
+  Writer: { type: String },
+  Actors: { type: String },
+  Plot: { type: String },
+  Language: { type: String },
+  Country: { type: String },
+  Awards: { type: String },
+  Metascore: { type: String },
+  imdbRating: { type: String },
+  imdbVotes: { type: String },
+  imdbID: { type: String },
+  Type: { type: String },
+  Response: { type: String },
+  Images: [{ type: String }]  // Assuming Images is an array of strings (URLs).
 });
 
-const Movie = mongoose.model("movies", movieSchema);
+
+const Movie = mongoose.model("movie", movieSchema);
 const Users = mongoose.model("users", userSchema);
 
 export default { Movie , Users};

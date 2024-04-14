@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { LoginFormModel } from "../models/LoginFormModel";  
-import axios from "axios";  
+import { LoginFormModel } from "../models/LoginFormModel";
+import axios from "axios";
 
 const Login = () => {
-  const [login, setLogin] = useState(LoginFormModel);  
+  const [login, setLogin] = useState(LoginFormModel);
 
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin() {  
+  async function handleLogin() {
+    console.log(LoginFormModel.emailAddress);
+
     setLoading(true); // for data loading
-    if (LoginFormModel.emailAddress === "" || LoginFormModel.password === "") {
+    if (setLogin.emailAddress === "" || setLogin.password === "") {
       console.log("Email address and password are required.");
     } else {
       try {
@@ -24,6 +26,7 @@ const Login = () => {
         } else {
           console.log(error.message);
         }
+        console.log(error);
       }
     }
   }
@@ -42,7 +45,14 @@ const Login = () => {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form onSubmit={handleLogin} className="space-y-6" action="#" method="POST"> {/* Added onSubmit event handler to the form */}
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+          className="space-y-6"
+        >
+          {" "}
+          {/* Added onSubmit event handler to the form */}
           <div>
             <label
               htmlFor="email"
@@ -53,6 +63,9 @@ const Login = () => {
             <div className="mt-2">
               <input
                 id="email"
+                onChange={(e) => {
+                  console.log(e.target.value);
+                }}
                 name="email"
                 type="email"
                 autoComplete="email"
@@ -61,7 +74,6 @@ const Login = () => {
               />
             </div>
           </div>
-
           <div>
             <div className="flex items-center justify-between">
               <label
@@ -90,11 +102,16 @@ const Login = () => {
               />
             </div>
           </div>
-
           <div>
             <button
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              onClick={() => {
+                if (loading === false) {
+                  handleLogin();
+                  setLoading(false);
+                }
+              }}
             >
               Sign in
             </button>

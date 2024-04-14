@@ -8,6 +8,7 @@ const navigation = [
   { name: "Movies", href: "/movies" },
   { name: "Login", href: "/login" },
   { name: "Signup", href: "/signup" },
+  {name: "Contact Us", href:"/contact"}
 ];
 
 export default function Navbar() {

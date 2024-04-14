@@ -5,6 +5,8 @@ import Signup from "./features/authentication/screens/Signup";
 import Home from "./features/home/screens/Home";
 import GlobalOutlet from "./core/outlet/GlobalOutlet";
 import Movies from "./features/movies/screens/Movies";
+import Review from "./features/movies/Review";
+import Contact from "./features/movies/screens/contact";
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Routes>
           <Route element={<GlobalOutlet />}>
             <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact/>} />
+            <Route path="/review" element={<Review />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/movies" element={<Movies />} />
