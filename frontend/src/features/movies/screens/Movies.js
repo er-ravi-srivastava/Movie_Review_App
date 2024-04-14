@@ -12,7 +12,7 @@ const Movie = () => {
     const fetchMovies = async () => {
       try {
         const response = await axios.get("http://localhost:3008/movies");
-        setMovies(response.data.data.movies); // Make sure your API returns this structure
+        setMovies(response.data.data.movies); 
         setLoading(false);
       } catch (error) {
         console.error("Error fetching movies:", error);
@@ -58,7 +58,7 @@ const Movie = () => {
                     to={`/movie/${movie._id}`}
                     className="mt-4 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
                   >
-                    Read Review
+                    <button href="/review">Read Review</button> 
                   </Link>
                 </div>
               </div>
