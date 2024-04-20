@@ -3,12 +3,14 @@ import db from "../db/Schema.js";
 import bcrypt from 'bcrypt';
 
 const router = express.Router();
-
+// !await bcrypt.compare(password, user.password)
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log(username,password);
     const user = await db.Users.findOne({ username });
-    if (!user || !await bcrypt.compare(password, user.password)) {
+    console.log(user);
+    if (!user || user.password !== password  ) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
     res.status(200).json({ success: true, message: "Login successful" });

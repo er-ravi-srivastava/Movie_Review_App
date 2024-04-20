@@ -29,7 +29,7 @@ const Movie = () => {
 
   return (
     <div className="relative">
-      <div className="text-center px-10 py-12">
+      {/* <div className="text-center px-10 py-12">
         <h1 className="text-4xl mt-40 font-bold text-gray-900">
           Welcome to MovieMania - Your Ultimate Destination for Film Reviews!
         </h1>
@@ -37,7 +37,7 @@ const Movie = () => {
           Immerse yourself in the mesmerizing world of cinema, where every frame tells a story and every performance captivates the soul. At MovieMania, we're passionate about bringing you the latest insights, reviews, and analyses of the silver screen's finest offerings.
           Embark on a cinematic adventure like never before as you explore a vast array of genres, from pulse-pounding action thrillers to heartwarming romantic comedies and thought-provoking dramas. Discover hidden cinematic gems waiting to be unearthed and revisit timeless classics that have shaped the landscape of modern filmmaking.
         </p>
-      </div>
+      </div> */}
   
       <div className="container mx-auto px-9 py-14 mt-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

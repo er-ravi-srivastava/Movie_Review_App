@@ -15,7 +15,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   return (
-    <Disclosure as="nav" className="bg-gray-900 fixed top-0 w-full">
+    <Disclosure as="nav" className="z-50 bg-gray-900 fixed top-0 w-full">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
