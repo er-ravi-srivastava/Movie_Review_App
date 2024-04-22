@@ -1,13 +1,50 @@
 import React, { useState } from "react";
 import CustomTextfield from "../../../core/components/CustomTextfield";
-import PrimaryButton from "../../../core/components/PrimaryButton";
+import PrimaryButton from "../../../core/components/PrimaryButton"; // Import PrimaryButton
 import { signupFormModel } from "../models/SignupFormModel";
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const [signUpFormData, setSignUpFormData] = useState(signupFormModel);
-
   const [loading, setLoading] = useState(false);
+
+  async function handleSignup() {
+    if (!signUpFormData.username || signUpFormData.username.trim() === "") {
+      // console.log("test");
+    } else if (
+      !signUpFormData.password ||
+      signUpFormData.password.trim() === ""
+    ) {
+      // console.log("password");
+    } else if (
+      !signUpFormData.confirmPassword ||
+      signUpFormData.confirmPassword.trim() === ""
+    ) {
+      // console.log("confirmPassword");
+    } else if (signUpFormData.password !== signUpFormData.confirmPassword) {
+      // console.log("password !== confirmPassword");
+    } else {
+      try {
+        const response = await axios.post("http://localhost:3008/register", {
+          username: signUpFormData.username,
+          password: signUpFormData.password,
+        });
+        console.log(response.data);
+        
+        toast.success("User created successfully!");
+      } catch (error) {
+        if (error.response && error.response.status === 409) {
+         
+          toast.error("Username is already taken. Please choose another one.");
+        } else {
+          console.log(error.response.data.message);
+        }
+      }
+    }
+    setLoading(false); 
+  }
 
   return (
     <div className="w-full h-full flex flex-col gap-10 justify-center items-center">
@@ -25,12 +62,6 @@ const Signup = () => {
             }));
           }}
         />
-        {/* <CustomTextfield
-          placeholder="Email"
-          onChange={(e) => {
-            setSignUpFormData((prev) => ({ ...prev, email: e.target.value }));
-          }}
-        /> */}
         <CustomTextfield
           placeholder="Password"
           type="password"
@@ -52,47 +83,18 @@ const Signup = () => {
           }}
         />
         <PrimaryButton
-          buttonText={loading?"please wait" : "Register"}
+          buttonText={loading ? "please wait" : "Register"}
           onClick={() => {
             if (!loading) {
+              setLoading(true);
               handleSignup();
-              setLoading(false);
             }
           }}
         />
       </form>
+      <ToastContainer /> 
     </div>
   );
-
-  async function handleSignup() {
-    setLoading(true); // for data loading
-    if (!signUpFormData.username || signUpFormData.username.trim() === "") {
-      console.log("test");
-    } else if (
-      !signUpFormData.password ||
-      signUpFormData.password.trim() === ""
-    ) {
-      console.log("password");
-    } else if (
-      !signUpFormData.confirmPassword ||
-      signUpFormData.confirmPassword.trim() === ""
-    ) {
-      console.log("confirmPassword");
-    } else if (signUpFormData.password !== signUpFormData.confirmPassword) {
-      console.log("password !== confirmPassword");
-    } else {
-      try {
-        const response = await axios.post("http://localhost:3008/register", {
-          username: signUpFormData.username,
-          password: signUpFormData.password,
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.response.data.message);
-      }
-    }
-    
-  }
 };
 
 export default Signup;

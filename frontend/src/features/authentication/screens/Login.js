@@ -1,35 +1,34 @@
 import React, { useState } from "react";
 import { LoginFormModel } from "../models/LoginFormModel";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const [login, setLogin] = useState(LoginFormModel);
-
   const [loading, setLoading] = useState(false);
 
   async function handleLogin() {
-    console.log(LoginFormModel.emailAddress);
+    setLoading(true); // Start loading
+    try {
+      const response = await axios.post("http://localhost:3008/login", {
+        username: login.emailAddress,
+        password: login.password,
+      });
+      console.log(response.data); // Log the response
 
-    setLoading(true); // for data loading
-    if (setLogin.emailAddress === "" || setLogin.password === "") {
-      console.log("Email address and password are required.");
-    } else {
-      try {
-        console.log(login);
-        const response = await axios.post("http://localhost:3008/login", {
-          username: login.emailAddress,
-          password: login.password,
-        });
-        console.log(response.data);
-      } catch (error) {
-        if (error.response) {
-          console.log(error.response.data.message);
-        } else {
-          console.log(error.message);
-        }
-        console.log(error);
+      // Display toast for successful login
+      toast.success("Login successful!");
+
+    } catch (error) {
+      if (error.response) {
+        console.log(error.response.data.message);
+      } else {
+        console.log(error.message);
       }
+      console.log(error);
     }
+    setLoading(false); // Stop loading
   }
 
   return (
@@ -49,11 +48,11 @@ const Login = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            handleLogin();
           }}
           className="space-y-6"
         >
-          {" "}
-          {/* Added onSubmit event handler to the form */}
+          {/* Email Address Field */}
           <div>
             <label
               htmlFor="email"
@@ -78,6 +77,8 @@ const Login = () => {
               />
             </div>
           </div>
+
+          {/* Password Field */}
           <div>
             <div className="flex items-center justify-between">
               <label
@@ -112,16 +113,12 @@ const Login = () => {
               />
             </div>
           </div>
+
+          {/* Sign-in Button */}
           <div>
-            <button
+            <button 
               type="submit"
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              onClick={() => {
-                if (loading === false) {
-                  handleLogin();
-                  setLoading(false);
-                }
-              }}
             >
               Sign in
             </button>
@@ -138,6 +135,8 @@ const Login = () => {
           </a>
         </p>
       </div>
+
+      <ToastContainer /> {/* Toast container */}
     </div>
   );
 };
