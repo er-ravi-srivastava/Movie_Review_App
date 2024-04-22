@@ -1,33 +1,35 @@
 import React, { useState } from "react";
-import { LoginFormModel } from "../models/LoginFormModel";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-  const [login, setLogin] = useState(LoginFormModel);
+  const [login, setLogin] = useState({
+    emailAddress: '',
+    password: ''
+  });
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin() {
+  async function handleLogin(e) {
+    e.preventDefault(); // Prevent form submission
     setLoading(true); // Start loading
+
     try {
       const response = await axios.post("http://localhost:3008/login", {
         username: login.emailAddress,
         password: login.password,
       });
-      console.log(response.data); // Log the response
-
-      // Display toast for successful login
       toast.success("Login successful!");
-
+      console.log(response.data);
     } catch (error) {
-      if (error.response) {
-        console.log(error.response.data.message);
+      if (error.response && error.response.status === 401) {
+        toast.error("Unauthorized.");
       } else {
+        toast.error("An error occurred.");
         console.log(error.message);
       }
-      console.log(error);
     }
+    
     setLoading(false); // Stop loading
   }
 
@@ -46,10 +48,7 @@ const Login = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleLogin();
-          }}
+          onSubmit={handleLogin}
           className="space-y-6"
         >
           {/* Email Address Field */}
@@ -118,9 +117,10 @@ const Login = () => {
           <div>
             <button 
               type="submit"
+              disabled={loading} 
               className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              Sign in
+              {loading ? "Signing in..." : "Sign in"}
             </button>
           </div>
         </form>
