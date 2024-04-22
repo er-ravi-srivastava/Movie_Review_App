@@ -20,7 +20,8 @@ const Login = () => {
         password: login.password,
       });
       toast.success("Login successful!");
-      console.log(response.data);
+      localStorage.setItem('id', response.data.id);
+      console.log(response.data.id);
     } catch (error) {
       if (error.response && error.response.status === 401) {
         toast.error("Unauthorized.");

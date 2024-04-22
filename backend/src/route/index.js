@@ -1,19 +1,22 @@
 import express from "express";
 import db from "../db/Schema.js";
 import bcrypt from 'bcrypt';
+import { trusted } from "mongoose";
 
 const router = express.Router();
-// !await bcrypt.compare(password, user.password)
+
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
-    console.log(username,password);
+    
     const user = await db.Users.findOne({ username });
     console.log(user);
-    if (!user || user.password !== password  ) {
+    const pass = await bcrypt.compare(password, user.password)
+    
+    if (!user || !pass) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
-    res.status(200).json({ success: true, message: "Login successful" });
+    res.status(200).json({ success: true, message: "Login hogaya",  id: user.id });
   } catch (error) {
     console.error('Error during login:', error);
     res.status(500).json({ success: false, message: "Server error" });

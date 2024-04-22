@@ -8,12 +8,15 @@ const navigation = [
   { name: "Movies", href: "/movies" },
   { name: "Login", href: "/login" },
   { name: "Signup", href: "/signup" },
-  {name: "Contact Us", href:"/contact"}
+  { name: "logout", href: "/logout" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const id = localStorage.getItem("id");
+
   return (
     <Disclosure as="nav" className="z-50 bg-gray-900 fixed top-0 w-full">
       {({ open }) => (
@@ -28,19 +31,27 @@ export default function Navbar() {
                 />
                 <div className="hidden md:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <button
-                        key={item.name}
-                        onClick={() => {
-                          navigate(item.href);
-                        }}
-                        className={
-                          "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-                        }
-                      >
-                        {item.name}
-                      </button>
-                    ))}
+                    {navigation.map((item, index) => {
+                      if ((index === 2 || index === 3) && id !== null) {
+                        return null;
+                      }
+                      if(index === 4 && id === null){
+                        return null;
+                      }
+                      return (
+                        <button
+                          key={item.name}
+                          onClick={() => {
+                            navigate(item.href);
+                          }}
+                          className={
+                            "text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+                          }
+                        >
+                          {item.name}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
