@@ -83,7 +83,7 @@ const Signup = () => {
           }}
         />
         <PrimaryButton
-          buttonText={loading ? "please wait" : "Register"}
+          buttonText={loading ? "please wait" : "Submit"}
           onClick={() => {
             if (!loading) {
               setLoading(true);
