@@ -39,7 +39,7 @@ const Movie = () => {
                 <img
                   src={movie.Images?.[0] || "https://via.placeholder.com/400"}
                   alt={`Poster for ${movie.Title}`}
-                  className="w-full h-55 object-fill"
+                  className="w-full h-[175px] object-cover"
                 />
                 <div className="p-4 flex flex-col gap-1">
                   <h2 className="text-xl font-bold ">{movie.Title}</h2>
