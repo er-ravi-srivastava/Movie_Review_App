@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const navigation = [
   { name: "Movies", href: "/movies" },
   { name: "Login", href: "/login" },
   { name: "Signup", href: "/signup" },
-  { name: "logout", href: "/logout" },
+  { name: "logout", href: "/" },
   { name: "Contact Us", href: "/contact" },
 ];
 
@@ -16,6 +16,21 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const id = localStorage.getItem("id");
+
+
+  // useEffect(() => {
+  //   // This function will be executed when the id stored in localStorage changes
+  //   // You can perform any side effect here
+    
+  //   // Retrieve the id from localStorage
+  //   const id = localStorage.getItem("id");
+    
+  //   // Perform any action with the id, for example:
+  //   console.log("ID changed:", id);
+  
+  //   // Make sure to include any dependencies that you're using inside the useEffect hook
+  // }, [localStorage.getItem("id")]);
+  
 
   return (
     <Disclosure as="nav" className="z-50 bg-gray-900 fixed top-0 w-full">

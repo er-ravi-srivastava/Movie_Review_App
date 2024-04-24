@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
-export default function MovieReviewForm() {
+
+
+const Review = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -14,10 +18,20 @@ export default function MovieReviewForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted review:', formData);
-    // Here you would typically handle the form submission to a backend server
+    try {
+      const response = await axios.post("http://localhost:3008/review", formData);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        rating: '',
+        review: ''
+      });
+    } catch (error) {
+      console.error("Error sending review:", error);
+    }
   };
 
   return (
@@ -81,13 +95,17 @@ export default function MovieReviewForm() {
             onChange={handleInputChange}
           ></textarea>
         </div>
+        
         <button
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
         >
           Submit Review
         </button>
+        
       </form>
     </div>
   );
-}
+};
+
+export default Review;

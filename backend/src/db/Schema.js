@@ -34,8 +34,16 @@ const movieSchema = new mongoose.Schema({
   Images: [{ type: String }]  // Assuming Images is an array of strings (URLs).
 });
 
+const reviewSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  email: String,
+  rating: Number,
+  review: String,
+});
 
+const Review = mongoose.model('review', reviewSchema);
 const Movie = mongoose.model("movie", movieSchema);
 const Users = mongoose.model("users", userSchema);
 
-export default { Movie , Users};
+export default { Movie , Users , Review};
