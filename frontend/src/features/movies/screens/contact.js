@@ -13,7 +13,7 @@ export default function ContactForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Contact form submitted:', formData);
-    // Typically, here you would send the form data to a server or email service
+   
   };
 
   return (

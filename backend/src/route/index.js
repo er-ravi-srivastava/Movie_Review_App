@@ -27,6 +27,24 @@ router.post("/review", async (req, res) => {
   }
 });
 
+router.post("/contact", async (req,res) =>{
+  try {
+    const { message } = req.body;
+
+    const newMessage = new db.Contact({
+      message,
+    });
+
+    await newMessage.save(); // save a contact form message to mongodb database
+    res.status(201).json({ message: "Message saved!", message: newMessage });
+  }
+  catch (error) {
+    console.error("Error during contact form:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+  });
+
+
 router.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -72,6 +90,8 @@ router.post("/register", async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
+
+
 
 router.get("/movies", async (req, res) => {
   try {

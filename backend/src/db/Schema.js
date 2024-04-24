@@ -31,7 +31,7 @@ const movieSchema = new mongoose.Schema({
   imdbID: { type: String },
   Type: { type: String },
   Response: { type: String },
-  Images: [{ type: String }]  // Assuming Images is an array of strings (URLs).
+  Images: [{ type: String }]  
 });
 
 const reviewSchema = new mongoose.Schema({
@@ -42,8 +42,14 @@ const reviewSchema = new mongoose.Schema({
   review: String,
 });
 
+
+const contactSchema = new mongoose.Schema({
+  message: String,
+});
+
+const Contact = mongoose.model('contact', contactSchema);
 const Review = mongoose.model('review', reviewSchema);
 const Movie = mongoose.model("movie", movieSchema);
 const Users = mongoose.model("users", userSchema);
 
-export default { Movie , Users , Review};
+export default { Movie , Users , Review , Contact};
