@@ -3,26 +3,52 @@ import db from "../db/Schema.js";
 import bcrypt from "bcrypt";
 import { trusted } from "mongoose";
 
+
+
+
 const router = express.Router();
 
-router.post("/review", async (req, res) => {
+// router.post("/review", async (req, res) => {
 
+//   try {
+//     const { firstName, lastName, email, rating, review } = req.body;
+  
+  
+//     const newReview = new db.Review({
+//       firstName,
+//       lastName,
+//       email,
+//       rating,
+//       review,
+//     });
+
+//     await newReview.save();
+//     res.status(201).json({ message: "Review saved!", review: newReview });
+//   } catch (error) {
+   
+//     res.status(500).json({ error: "Failed to save review" });
+//   }
+// });
+
+
+
+router.post("/review", async (req, res) => {
   try {
     const { firstName, lastName, email, rating, review } = req.body;
-  
-  
+     const movieId = req.body._id; // take imput movie id form mongodb ----test
+    console.log(movieId);
     const newReview = new db.Review({
       firstName,
       lastName,
       email,
       rating,
       review,
+       _id,
     });
 
     await newReview.save();
     res.status(201).json({ message: "Review saved!", review: newReview });
   } catch (error) {
-   
     res.status(500).json({ error: "Failed to save review" });
   }
 });

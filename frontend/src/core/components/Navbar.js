@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -16,21 +16,27 @@ export default function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   const id = localStorage.getItem("id");
+  const [searchQuery, setSearchQuery] = useState("");
 
+  const handleSearch = () => {
+   
+    navigate(`/search?query=${searchQuery}`);
+    
+    setSearchQuery("");
+  };
 
   // useEffect(() => {
   //   // This function will be executed when the id stored in localStorage changes
   //   // You can perform any side effect here
-    
+
   //   // Retrieve the id from localStorage
   //   const id = localStorage.getItem("id");
-    
+
   //   // Perform any action with the id, for example:
   //   console.log("ID changed:", id);
-  
+
   //   // Make sure to include any dependencies that you're using inside the useEffect hook
   // }, [localStorage.getItem("id")]);
-  
 
   return (
     <Disclosure as="nav" className="z-50 bg-gray-900 fixed top-0 w-full">
@@ -50,7 +56,7 @@ export default function Navbar() {
                       if ((index === 2 || index === 3) && id !== null) {
                         return null;
                       }
-                      if(index === 4 && id === null){
+                      if (index === 4 && id === null) {
                         return null;
                       }
                       return (
@@ -69,6 +75,21 @@ export default function Navbar() {
                     })}
                   </div>
                 </div>
+              </div>
+              <div className="flex items-center">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search movies..."
+                  className="px-3 py-1 mr-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  onClick={handleSearch}
+                  className="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                >
+                  Search
+                </button>
               </div>
               <div className="flex items-center">
                 <button
