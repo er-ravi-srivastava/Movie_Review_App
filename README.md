@@ -1,0 +1,1 @@
+This is a movie review app based on the MERN stack where users can log in, make reviews, and search for movies. The backend utilizes MongoDB, while the frontend is built with ReactJS and styled using Tailwind CSS. ExpressJS and NodeJS handle the server-side operations.
