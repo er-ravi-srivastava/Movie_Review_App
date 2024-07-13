@@ -16,5 +16,5 @@ app.use(router);
 
 app.listen(PORT, () => {
   console.log(PORT);
-  console.log("server connected ");
+  console.log("It is been connected now ");
 });
