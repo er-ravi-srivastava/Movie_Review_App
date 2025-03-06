@@ -10,7 +10,7 @@ connectDB();
 
 app.use(cors(
 {
-  origin: ["https://movie-review-app-delta-ochre.vercel.app/"]
+  origin: ["https://movie-review-api.vercel.app/"]
   method: ["POST","GET","PUT","PATCH"],
   credentials: true
 }
