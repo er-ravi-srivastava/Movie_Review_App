@@ -18,11 +18,12 @@ app.use(cors(
 app.use(express.json());
 app.use(router);
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello from Vercel!" });
-});
 
 app.listen(PORT, () => {
   console.log(PORT);
   console.log("It is been connected now ");
 });
+app.get("/", (req, res) => {
+  res.json({ message: "Hello from Vercel!" });
+});
+
