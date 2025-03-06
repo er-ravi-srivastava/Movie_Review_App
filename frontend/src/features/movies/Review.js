@@ -21,7 +21,7 @@ const Review = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3008/review", formData);
+      const response = await axios.post("https://movie-review-api.vercel.app/review", formData);
       setFormData({
         firstName: '',
         lastName: '',
