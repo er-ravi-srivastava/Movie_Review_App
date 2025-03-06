@@ -8,7 +8,13 @@ const PORT =  3008;
 
 connectDB();
 
-app.use(cors());
+app.use(cors(
+{
+  origin: ["https://movie-review-app-delta-ochre.vercel.app/"]
+  method: ["POST","GET","PUT","PATCH"],
+  credentials: true
+}
+));
 app.use(express.json());
 app.use(router);
 
