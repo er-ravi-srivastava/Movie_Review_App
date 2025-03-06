@@ -27,7 +27,7 @@ const Signup = () => {
       // console.log("password !== confirmPassword");
     } else {
       try {
-        const response = await axios.post("http://localhost:3008/register", {
+        const response = await axios.post("https://movie-review-api.vercel.app/register", {
           username: signUpFormData.username,
           password: signUpFormData.password,
         });
