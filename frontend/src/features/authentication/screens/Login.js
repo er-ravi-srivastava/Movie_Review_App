@@ -15,7 +15,7 @@ const Login = () => {
     setLoading(true); // Start loading
 
     try {
-      const response = await axios.post("http://localhost:3008/login", {
+      const response = await axios.post("https://movie-review-api.vercel.app/login", {
         username: login.emailAddress,
         password: login.password,
       });
