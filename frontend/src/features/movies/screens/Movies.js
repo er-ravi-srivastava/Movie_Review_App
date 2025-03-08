@@ -6,14 +6,15 @@ import axios from "axios";
 
 const Movie = () => {
   const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const nav = useNavigate();
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("https://movie-review-api-ravis-projects-495941fa.vercel.app/movies");
+        setLoading(true);
+        const response = await axios.get("https://movie-review-api-ravis-projects-495941fa.vercel.app/movies");      
         setMovies(response.data.data.movies); 
         setLoading(false);
       } catch (error) {
@@ -26,7 +27,7 @@ const Movie = () => {
     fetchMovies();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className="flex items-center justify-center h-screen">Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
