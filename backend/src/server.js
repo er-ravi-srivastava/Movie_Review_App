@@ -12,7 +12,7 @@ connectDB();
 // app.use(cors())
 
 app.use(cors({
-  origin: "https://movie-review-api.vercel.app/",
+  origin: "https://movie-review-app-frontend-livid.vercel.app/",
   methods: ["POST", "GET", "PUT", "PATCH"],
   credentials: true
 }));
