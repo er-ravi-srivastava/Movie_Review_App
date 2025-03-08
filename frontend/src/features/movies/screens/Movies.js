@@ -13,7 +13,7 @@ const Movie = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await axios.get("https://movie-review-api.vercel.app/movies");
+        const response = await axios.get("https://movie-review-api-ravis-projects-495941fa.vercel.app/movies");
         setMovies(response.data.data.movies); 
         setLoading(false);
       } catch (error) {
